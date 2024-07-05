@@ -1,0 +1,41 @@
+﻿<Properties StartupConfiguration="{D1EFCF06-2D3C-6C06-07BF-9269683ACA8E}|">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Level Uniques/Menu/HomescreenSceneManager.cs">
+    <Files>
+      <File FileName="Assets/AssetKits/ParticleImage/README.md" Line="1" Column="1" />
+      <File FileName="Assets/Level Uniques/1.11 NormalSubtraction/AnswerManager13.cs" />
+      <File FileName="Assets/Level Uniques/1.30 Clock/AnswerManager15.cs" />
+      <File FileName="Assets/Level Uniques/1.30 Clock/FractionMobileKeyboardController.cs" />
+      <File FileName="Assets/Level Uniques/4.1 FractionEQ/AnswerManager41.cs" />
+      <File FileName="Assets/Level Uniques/Menu/EveryScene/MobileKeyboardController.cs" />
+      <File FileName="Assets/Level Uniques/0.0 NumberCounting/AnswerManager000.cs" />
+      <File FileName="Assets/Level Uniques/1.10 NormalAddition/AnswerManager12.cs" />
+      <File FileName="Assets/Level Uniques/1.0 AdditionV/ClickOnAnswerBox10.cs" />
+      <File FileName="Assets/Level Uniques/1.05 Function/AnswerManager1051.cs" />
+      <File FileName="Assets/Level Uniques/FractionFromShape/AnswerManager42.cs" />
+      <File FileName="Assets/Level Uniques/Menu/EveryScene/SceneCompleteMenu.cs" />
+      <File FileName="Assets/Datafiles/VariableData.json" />
+      <File FileName="Assets/Level Uniques/Menu/EveryScene/Vibrator.cs" />
+      <File FileName="Assets/Level Uniques/4.15 FractionEQHard/FractionHandlerHard.cs" />
+      <File FileName="Assets/BackToMenuSCRIPT.cs" />
+      <File FileName="Assets/Level Uniques/FractionFromShape/TwoSeparateObjects.cs" />
+      <File FileName="Assets/Level Uniques/Menu/HomescreenSceneManager.cs" Line="42" Column="1" />
+      <File FileName="Assets/Level Uniques/Menu/Speed/DetermineCompletedLevels.cs" />
+      <File FileName="Assets/Level Uniques/1.20 GreaterThand/Second Attempt/AnswerManagerCircleGeneration.cs" />
+      <File FileName="Assets/Level Uniques/Menu/MixIt.cs" />
+      <File FileName="Assets/Level Uniques/Menu/EveryScene/DataCollector.cs" />
+      <File FileName="Assets/Level Uniques/Menu/LoadDefaultPersistents.cs" />
+      <File FileName="Assets/Level Uniques/Menu/EveryScene/PlayerPreferenceManagement.cs" />
+      <File FileName="Assets/Level Uniques/Menu/CurrentlyTesting/SceneRatingsDisplay.cs" />
+      <File FileName="Assets/Level Uniques/Menu/EveryScene/SupabaseLeaderboard.cs" Line="91" Column="1" />
+      <File FileName="Assets/Level Uniques/Menu/InputUserHandling.cs" />
+      <File FileName="Library/PackageCache/com.unity.mobile.notifications@2.2.1/Editor/iOSNotificationPostProcessor.cs" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="ca73e422-150a-440d-90c9-47088a9c6197" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>

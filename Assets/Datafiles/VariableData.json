@@ -1,0 +1,25 @@
+{"currentScene":"NumberCounting","counterScene":0,"timeElapsed":0}
+Activity_reps: user, level, duration, interaction, thumbsUp, repsID, completedBool 
+Activity_rep: User, repsID, answer_submitted, question, correctAnswer, timeStarted, timeEnded
+
+string variableDataJson = "{\"user\":\"ColeSaucier\",\"currentScene\":\"NumberCounting\",\"lastRepId\":0,\"counterScene\":0\"timeElapsed\":0.0}";
+Activity_reps: /user, /level, /duration, interaction(anytime), thumbsUp(end), repsID(begining), completedBool(end) 
+#note: This should should be entered on press of next, redo, or menu
+
+
+duration = SceneCompleteMenu.elapsedTimeFinal;
+interaction(anytime) (default no)
+thumbsUp(end) (default null)
+repsId(begining) = variableObject.lastRepId + 1;
+completedBool(end) = (default No)
+
+
+
+
+
+
+
+// Get the current UTC timestamp
+DateTime timestampStartUTC = DateTime.UtcNow;
+
+need to ask lyra to create art for smileFace or sadFace

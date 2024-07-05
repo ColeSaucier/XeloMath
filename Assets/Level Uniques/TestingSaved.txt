@@ -1,0 +1,127 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine.SceneManagement;
+using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
+using System;
+
+public class SceneCompleteMenu : MonoBehaviour
+{
+    public Button Button1;
+    public Button Button2;
+    public Button Button3;
+    public TextMeshProUGUI ratingText;
+    public TextMeshProUGUI secondsText;
+    public TextMeshProUGUI minutesText;
+    public CanvasGroup popUpCanvasGroup;
+    public string CompletionRating = "";
+    public string CompletionTime = "";
+
+    public bool SceneComplete = false;
+
+    //For Data Collection/Saving
+    public TextAsset scenejsonFilePath;
+    private string sceneJsonString;
+    public string variablejsonFilePath;
+    private string variableJsonString;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        //retrieve data and create dataObject
+        SceneData sceneObject = new SceneData();
+        string filePath = Path.Combine(Application.dataPath, scenejsonFilePath); // Combine with the Assets folder
+        sceneJsonString = File.ReadAllText(filePath);
+        sceneObject = JsonUtility.FromJson<SceneData>(sceneJsonString);
+        //retrieve data and create dataObject
+        VariableData variableObject = new VariableData();
+        filePath = Path.Combine(Application.dataPath, variablejsonFilePath); // Combine with the Assets folder
+        variableJsonString = File.ReadAllText(filePath);
+        variableObject = JsonUtility.FromJson<VariableData>(variableJsonString);
+
+        variableObject.currentScene = SceneManager.GetActiveScene().name;
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+
+        if (SceneComplete)
+        {
+            sceneComplete();
+        }
+    }
+
+    void sceneComplete()
+    {
+        variableObject.counterScene++;
+        if (variableObject.counterScene != sceneObject.numRepetitions)
+        {
+            //saveData
+            string variableJsonString = JsonUtility.ToJson(variableObject);
+            File.WriteAllText(filePath, variableJsonString);
+            RestartScene();
+        }
+        else
+        {
+            RepsCompleted();
+        }
+    }
+
+    void RepsCompleted()
+    {
+        if (variableObject.timeElapsed < sceneObject.bestTime)
+        {
+            sceneObject.bestTime = variableObject.timeElapsed;
+        }
+
+        CompletionRating = "Bronze";
+        if (sceneObject.bestTime < sceneObject.goldTime)
+            CompletionRating = "Gold";
+        if (sceneObject.bestTime < sceneObject.perfTime)
+            CompletionRating = "Perfect++";
+
+        sceneObject.bestRating = CompletionRating;
+        ratingText.text = CompletionRating;
+
+        int minutes = sceneObject.bestTime / 60;
+        int seconds = sceneObject.bestTime % 60;
+        minutesText.text = minutes.ToString();
+        secondsText.text = seconds.ToString();
+
+
+        //saveData
+        string sceneJsonString = JsonUtility.ToJson(sceneObject);
+        File.WriteAllText(filePath, sceneJsonString);
+
+        popUpCanvasGroup.alpha = 1f;
+        popUpCanvasGroup.interactable = true; // Enable interactions with the pop-up canvas
+    }
+
+    void RestartScene()
+    {
+        // Get the current scene index
+        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+
+        // Reload the current scene
+        SceneManager.LoadScene(currentSceneIndex);
+    }
+    [Serializable]
+    public class SceneData
+    {
+        public int bestTime;
+        public string bestRating;
+        public int goldTime;
+        public int perfTime;
+        public int numRepetitions;
+    }
+
+    [Serializable]
+    public class VariableData
+    {
+        public string currentScene;
+        public int counterScene;
+        public float timeElapsed;
+    }
+}

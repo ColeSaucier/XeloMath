@@ -1,0 +1,107 @@
+using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Csharp.Threading.Tasks;
+using Postgrest.Responses;
+using Supabase.Gotrue;
+using Supabase.Gotrue.Exceptions;
+using TMPro;
+using UnityEngine;
+using Client = Supabase.Client;
+using RequestException = Postgrest.RequestException;
+
+namespace App {
+    public class SupabaseStuff : MonoBehaviour {
+    public const string SUPABASE_URL = "https://acpornqddkzqsdppbabw.supabase.co";
+    public const string SUPABASE_PUBLIC_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFjcG9ybnFkZGt6cXNkcHBiYWJ3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTM2NTU5MzcsImV4cCI6MjAyOTIzMTkzN30.UQ73w2nx-UxmXhxBF2_jSTl19aZ1bjb9LjYY4eraMtY";
+        
+   	private static Client
+        
+    private async void Start()
+	{
+	    if (_supabase == null)
+	    {
+	        _supabase = new Client(SUPABASE_URL, SUPABASE_PUBLIC_KEY);
+	        await _supabase.InitializeAsync();
+
+	        
+	        // Process the table data as needed
+	    }
+	}
+	
+	var tableData = await GetTableData("Users");
+	public async Task<List<Dictionary<string, object>>> GetTableData(string tableName)
+	{
+	    try
+	    {
+	        var response = await _supabase.From(tableName).Select("*").Execute();
+	        return response.Data;
+	    }
+	    catch (RequestException ex)
+	    {
+	        Debug.LogError($"Error retrieving data from table '{tableName}': {ex.Message}");
+	        return new List<Dictionary<string, object>>();
+	    }
+	}
+}
+}
+
+
+
+#Top 4 entries
+SELECT TOP 4 
+    Id, duration, user, level, interaction, thumbs_up, reps_ID,
+    ROW_NUMBER() OVER(ORDER BY duration ASC) AS rank_order
+FROM 
+    Activity_reps
+ORDER BY 
+    duration ASC;
+
+#pick a specific entry
+SELECT 
+    Id, duration, user, level, interaction, thumbs_up, reps_ID,
+    ROW_NUMBER() OVER(ORDER BY duration ASC) AS rank_order
+FROM 
+    Activity_reps
+WHERE 
+    user = 'Cole' AND duration = 23.66666;
+
+
+#need to figure out how to get variable rank into UnityEngine
+SELECT 
+    ROW_NUMBER() OVER(ORDER BY duration ASC) AS rank_order
+FROM 
+    Activity_reps
+WHERE 
+    user = 'Cole' AND duration = 23.66666;
+
+
+#get the other four, including the current best time REPS
+SELECT *
+FROM (
+    SELECT 
+        Id, duration, user, level, interaction, thumbs_up, reps_ID,
+        ROW_NUMBER() OVER(ORDER BY duration ASC) AS rank_order
+    FROM 
+        Activity_reps
+) AS ranked_data
+WHERE 
+    rank_order BETWEEN 1152 AND 1155;
+
+#Get the first 8?
+SELECT *
+FROM (
+    SELECT 
+        Id, duration, user, level, interaction, thumbs_up, reps_ID,
+        ROW_NUMBER() OVER(ORDER BY duration ASC) AS rank_order
+    FROM 
+        Activity_reps
+) AS ranked_data
+WHERE 
+    rank_order BETWEEN 1152 AND 1155;
+
+// Get the current UTC timestamp
+DateTime timestampStartUTC = DateTime.UtcNow;
+
+
+
